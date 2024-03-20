@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        *{
+            margin: 0%;
+            padding: 0%;
+            box-sizing: border-box;
+            
+        }
+        body{
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            background-image: url('./3357683.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .main-head{
+            margin-top: 70px;
+        }
+        .container{
+
+            width: 600px;
+            height: 500px;
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: aliceblue;
+            border-radius: 5px;
+            margin-bottom: 80px;
+            
+           box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        .operation{
+            margin-top: 30px;
+
+        }
+        input[type='text']{
+            border-radius: 3px;
+            padding: 6px;
+            border: none;
+            background-color: rgb(234, 234, 236);
+        }
+      button{
+        padding: 6px 30px;
+        border: none;
+        color: white;
+        background-color: blue;
+        border-radius: 3px;
+      }
+      .order{
+        margin-top: 10px;
+         
+      }
+      .list {
+        gap: 10px;
+        margin-top: 3px;
+        padding: 4px;
+        display: flex;
+        justify-content: space-between;
+        margin: 5px;
+      } 
+      .btn{
+        padding: 0px 3px;
+    gap: 5px;
+    display: flex;
+      }
+
+@media (max-width:600px) {
+    body{
+        height: 100%;
+    }
+    .container{
+        width: 400px;
+
+
+    }
+}
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+</head>
+<body>
+   <div class="container">
+    <div class="main-head">
+    <h1>Todo App</h1>
+</div>
+    
+    <div class="operation">
+    <input type="text" id="todo" placeholder="Enter the value to add" >
+    <button onclick="todoApp()">Add</button>
+</div>
+<div class="order">
+    <ol id="oll"></ol>
+    </div>
+   
+</div>
+    <!-- <ol></ol>
+    <button onclick="myFunc()">Submit</button>
+     -->
+    <script>
+        const arr=[];
+                const todo=document.querySelector('#todo');
+                const ol=document.querySelector('ol');
+
+        const todoApp=function(){
+            
+            
+           if(todo.value!=""){
+              arr.push(todo.value);
+           }
+           else{
+            alert("Cannot be empty");
+           }
+           todo.value='';
+           renderTodo();
+          
+        }
+        
+        function renderTodo(){
+            ol.innerHTML='';
+            for (let i = 0; i < arr.length; i++) {
+            ol.innerHTML+=`<li class="list"><div><p >${i+1}) ${arr[i]}</p></div><div class="btn"> <button style="background-color:green;" onclick="editFunc(${i})">Edit</button><button style="background-color:red;" onclick="deleteFunc(${i})">Delete</button></div></li>`;
+              
+           }
+        }
+        function editFunc(index){
+            console.log("edit");
+            const n= prompt(`Enter value to update ${arr[index]}`);
+            if(n!=""){
+           arr[index]=n;
+
+            }
+            else{
+                alert("Please enter some value");
+            }
+
+           renderTodo();
+        }
+        
+        function deleteFunc(index){
+            console.log("delete");
+           arr.splice(index,1);
+           renderTodo();
+        }
+        
+         
+        // const fruit=['apple','mango','banana'];
+        // var ol =document.querySelector('ol');
+
+    //   function myFunc(){
+    //     ol.innerHTML='';
+    //     var i=0;
+    //     do{
+    //         console.log("hello");
+    //     }
+    //     while(i<10){
+    //         console.log('jawwad ki bachi holofera');
+    //         i++
+    //     }
+        // while(i<fruit.length){
+        //     ol.innerHTML += `<li>${fruit[i]}</li>`;
+        //     i++;
+
+        // }
+        // for (let i = 0; i < fruit.length; i++) {
+        //     ol.innerHTML += `<li>${fruit[i]}</li>`;
+            
+        // }
+    //   }
+    </script>
+    
+</body>
+</html>
